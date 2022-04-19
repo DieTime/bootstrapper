@@ -9,31 +9,23 @@ from getch import getch
 DEFAULT_CONFIGS_DIR: Final = 'configs'
 
 
-def get_yaml_config_paths(configs_dir: str) -> List[str]:
-    yaml_config_paths: List[str] = []
-
-    for directory, _, _ in os.walk(configs_dir):
-        dir_yaml_config_paths: List[str] = glob.glob(os.path.join(f'{directory}/*.yaml'))
-        yaml_config_paths.extend(dir_yaml_config_paths)
-
-    return yaml_config_paths
+def get_config_paths(configs_dir: str) -> List[str]:
+    search_query = os.path.join(configs_dir, "**/*.yaml")
+    return glob.glob(search_query, recursive=True)
 
 
 def user_agree(question: str) -> bool:
-    message: str = gray("[?]") + " " + underline(question)
-    helper: str = gray("y/n")
-
-    print(f'{message} {helper}', end=' ', flush=True)
+    message: str = f'{gray("[?]")} {underline(question)}'
+    print(f'{message} {gray("y/n")}', end=' ', flush=True)
 
     answer: str = ''
     while answer not in ['y', 'n']:
         answer = getch().lower()
 
-    agree: bool = answer == 'y'
-    agree_str: str = green('Yes') if agree else red('No ')
-
+    agree_str: str = green('Yes') if answer == 'y' else red('No ')
     print(f'\r{message} {agree_str}')
-    return agree
+
+    return answer == 'y'
 
 
 if __name__ == '__main__':
@@ -41,13 +33,8 @@ if __name__ == '__main__':
     accepted_configs: List[Config] = []
 
     try:
-        for yaml_config_path in get_yaml_config_paths(DEFAULT_CONFIGS_DIR):
-            configs.append(Config(yaml_config_path))
-    except (RuntimeError, FileNotFoundError) as err:
-        sys.exit(f'{red("[!]")} {err}')
+        configs = [Config(cfg_path) for cfg_path in get_config_paths(DEFAULT_CONFIGS_DIR)]
+    except RuntimeError as error:
+        sys.exit(f'{red("[!]")} {error}')
 
-    for config in configs:
-        if user_agree(config.get_question()):
-            accepted_configs.append(config)
-
-    print(accepted_configs)
+    accepted_configs = [cfg for cfg in configs if user_agree(cfg.get_question())]
