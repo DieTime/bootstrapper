@@ -1,7 +1,7 @@
 import os
 import yaml
 from typing import Final, List
-from colors import underline
+from termutils import underline
 
 QUESTION_SECTION: Final = "question"
 STEPS_SECTION: Final = "steps"
