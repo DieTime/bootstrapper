@@ -12,6 +12,9 @@ class Config:
         self.__path: str = path
         self.__name: str = os.path.basename(path)
 
+        if not os.path.exists(self.__path):
+            raise RuntimeError(f'{underline(path)}: file {underline("not exists")}')
+
         with open(path, 'r') as config:
             try:
                 self.__data: dict[str, any] = yaml.load(config, Loader=yaml.SafeLoader)

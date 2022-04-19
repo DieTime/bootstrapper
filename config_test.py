@@ -4,7 +4,7 @@ from config import Config
 
 class TestConfig(unittest.TestCase):
     def test_not_found(self):
-        with self.assertRaises(FileNotFoundError):
+        with self.assertRaises(RuntimeError):
             _ = Config('test-configs/not-found.yaml')
 
     def test_invalid_syntax(self):
