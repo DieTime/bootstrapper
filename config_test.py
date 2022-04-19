@@ -15,9 +15,17 @@ class TestConfig(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             _ = Config('test-configs/no-question.yaml')
 
+    def test_empty_question(self):
+        with self.assertRaises(RuntimeError):
+            _ = Config('test-configs/empty-question.yaml')
+
     def test_no_steps(self):
         with self.assertRaises(RuntimeError):
             _ = Config('test-configs/no-steps.yaml')
+
+    def test_empty_steps(self):
+        with self.assertRaises(RuntimeError):
+            _ = Config('test-configs/empty-steps.yaml')
 
     def test_valid(self):
         config_path = 'test-configs/valid.yaml'

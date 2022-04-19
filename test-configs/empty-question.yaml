@@ -1,4 +1,4 @@
-ques tion: "Test config file?"
+question:
 steps:
   - Check invalid syntax:
     - ...

@@ -25,6 +25,8 @@ class Config:
         for section in [QUESTION_SECTION, STEPS_SECTION]:
             if section not in self.__data:
                 raise RuntimeError(f'{underline(path)}: {underline(section)} section not found')
+            if self.__data[section] is None:
+                raise RuntimeError(f'{underline(path)}: {underline(section)} section is empty')
 
     def get_question(self) -> str:
         return self.__data[QUESTION_SECTION]
