@@ -11,6 +11,7 @@ class Config:
     def __init__(self, path: str):
         self.__path: str = path
         self.__name: str = os.path.basename(path)
+        self.__dir: str = os.path.dirname(path)
 
         if not os.path.exists(self.__path):
             raise RuntimeError(f'{underline(path)}: file {underline("not exists")}')
@@ -36,3 +37,6 @@ class Config:
 
     def get_path(self) -> str:
         return self.__path
+
+    def get_dir(self) -> str:
+        return self.__dir

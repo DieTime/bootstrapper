@@ -26,6 +26,7 @@ class TestConfig(unittest.TestCase):
         self.assertEqual(config.get_name(), 'valid.yaml')
         self.assertEqual(config.get_path(), config_path)
         self.assertEqual(config.get_question(), 'Test config file?')
+        self.assertEqual(config.get_dir(), 'test-configs')
         self.assertListEqual(config.get_steps(), [
             {'Check invalid syntax': ['...', '...']},
             {'Check question section exists': ['...', '...']},
