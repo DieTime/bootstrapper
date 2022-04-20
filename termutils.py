@@ -18,7 +18,7 @@ def gray(text: str) -> str:
 
 
 def user_agree(question: str) -> bool:
-    message: str = f'{gray("[?]")} {underline(question)}'
+    message: str = f'{gray("[?]")} {question}'
     print(f'{message} {gray("y/n")}', end=' ', flush=True)
 
     answer: str = ''
