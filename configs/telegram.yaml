@@ -14,7 +14,7 @@ steps:
     - ln -s /home/$(whoami)/.local/share/Telegram/Telegram /home/$(whoami)/.local/share/Telegram/telegram-desktop
 
   - Add Telegram Desktop to PATH:
-    - echo echo "PATH=/home/$(whoami)/.local/share/Telegram:\$PATH" >> /home/$(whoami)/.bashrc && . /home/$(whoami)/.bashrc
+    - echo "PATH=/home/$(whoami)/.local/share/Telegram:\$PATH" >> /home/$(whoami)/.bashrc
     - if [ -f "/home/$(whoami)/.config/fish/config.fish" ];
         then echo "fish_add_path /home/$(whoami)/.local/share/Telegram" >> /home/$(whoami)/.config/fish/config.fish;
       fi
