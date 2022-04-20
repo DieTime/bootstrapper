@@ -5,15 +5,12 @@ steps:
     - sudo apt install wget
 
   - Downloading Telegram Desktop:
-    - rm -f /tmp/telegram.tar.xz
     - wget -O /tmp/telegram.tar.xz https://telegram.org/dl/desktop/linux
 
   - Unpacking Telegram Desktop:
     - tar xf /tmp/telegram.tar.xz -C /home/$(whoami)/.local/share/
-    - rm -f /tmp/telegram.tar.xz
 
   - Add symlink to telegram-desktop:
-    - rm -f /home/$(whoami)/.local/share/Telegram/telegram-desktop
     - ln -s /home/$(whoami)/.local/share/Telegram/Telegram /home/$(whoami)/.local/share/Telegram/telegram-desktop
 
   - Add Telegram Desktop to PATH:
