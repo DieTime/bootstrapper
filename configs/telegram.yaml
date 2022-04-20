@@ -21,3 +21,6 @@ steps:
 
   - Test launch Telegram Desktop in tray:
     - (/home/$(whoami)/.local/share/Telegram/telegram-desktop -startintray &) && sleep 2 && killall telegram-desktop
+
+  - Cleanup downloaded files:
+    rm -f /tmp/telegram.tar.xz
