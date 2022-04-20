@@ -1,10 +1,25 @@
 import os
+import subprocess
 import yaml
-from typing import Final, List
-from termutils import underline
+from typing import Final, List, Dict
+from termutils import green, underline, red
+from yaspin import yaspin
 
 QUESTION_SECTION: Final = "question"
 STEPS_SECTION: Final = "steps"
+
+
+class changedir():
+    def __init__(self, directory: str):
+        self.next_dir = directory
+        self.pwd = os.getcwd()
+
+    def __enter__(self):
+        os.chdir(self.next_dir)
+        return self
+
+    def __exit__(self, type, value, traceback):
+        os.chdir(self.pwd)
 
 
 class Config:
@@ -31,7 +46,7 @@ class Config:
     def get_question(self) -> str:
         return self.__data[QUESTION_SECTION]
 
-    def get_steps(self) -> List[List[str]]:
+    def get_steps(self) -> List[Dict[str, List[str]]]:
         return self.__data[STEPS_SECTION]
 
     def get_name(self) -> str:
@@ -42,3 +57,35 @@ class Config:
 
     def get_dir(self) -> str:
         return self.__dir
+
+    def process(self):
+        err_message = ""
+
+        with changedir(self.get_dir()):
+            for step in self.get_steps():
+                if err_message != "":
+                    break
+
+                description = list(step.keys())[0]
+                with yaspin(text=description):
+                    for command in step[description]:
+                        call = subprocess.run(command, capture_output=True, shell=True)
+                        if call.returncode != 0:
+                            err_message = call.stderr.decode('utf-8')
+                            break
+
+        ok = err_message == ""
+
+        icon = '[!]'
+        icon_size = len(icon)
+
+        color = green if ok else red
+        color_status = color('Ok' if ok else 'Bad')
+        color_icon = color(icon)
+
+        text = self.get_question().replace('?', '')
+        print(f'{color_icon} {text} {color_status}')
+
+        if not ok:
+            print(f'{" " * icon_size} --> {underline(self.get_path())}')
+            print(f'\n{err_message}', end='')
