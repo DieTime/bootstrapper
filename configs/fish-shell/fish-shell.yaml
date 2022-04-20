@@ -1,0 +1,10 @@
+question: "Install fish-shell?"
+steps:
+  - Add fish-shell repository:
+    - sudo apt-add-repository ppa:fish-shell/release-3
+
+  - Updating apt repositories:
+    - sudo apt update
+
+  - Installing fish-shell:
+    - sudo apt install fish
