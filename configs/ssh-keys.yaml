@@ -1,0 +1,7 @@
+question: "Generate ssh keys?"
+steps:
+  - Generating new ed25519 ssh keypair:
+    - yes "" | ssh-keygen -t ed25519
+
+  - Add ssh key:
+    - ssh-add /home/$(whoami)/.ssh/id_ed25519
