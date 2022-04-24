@@ -1,11 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
 # setup virtual environment
-sudo apt install python3-venv -y
+sudo apt install python3-pip python3-venv -y
 python3 -m venv env
+source ./env/bin/activate
 
 # install dependencies
-./env/bin/pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 # run bootstrapper
-clear && ./env/bin/python3 main.py
+python3 main.py
+
+# deactivate virtual environment
+deactivate
