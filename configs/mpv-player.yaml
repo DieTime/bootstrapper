@@ -5,3 +5,6 @@ steps:
 
   - Installing MPV player:
     - sudo apt install mpv -y
+
+  - Change name of desktop file:
+    - sudo sed -i "s/Name=mpv Media Player/Name=MPV Player/g" /usr/share/applications/mpv.desktop
