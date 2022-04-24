@@ -5,7 +5,8 @@ steps:
     - sudo apt install software-properties-common apt-transport-https wget -y
 
   - Importing Microsoft GPG keys:
-    - wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+    - wget -O /tmp/vscode.key https://packages.microsoft.com/keys/microsoft.asc
+    - sudo apt-key add /tmp/vscode.key
 
   - Add Visual Studio Code repository:
     - sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" -y
@@ -13,3 +14,6 @@ steps:
   - Installing Visual Studio Code:
     - sudo apt update
     - sudo apt install code -y
+
+  - Cleanup downloaded key:
+    - rm -f /tmp/vscode.key
