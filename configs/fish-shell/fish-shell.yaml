@@ -9,3 +9,9 @@ steps:
 
   - Installing Fish:
     - sudo apt install fish -y
+
+  - Copy Fish configs:
+    - cp -r ./dot-config /home/$(whoami)/.config/fish
+
+  - Set Fish as default:
+    - sudo chsh -s /usr/bin/fish $(logname)
