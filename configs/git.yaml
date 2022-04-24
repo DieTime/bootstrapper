@@ -1,0 +1,7 @@
+question: "Install Git?"
+steps:
+  - Update repositories:
+    - sudo apt update
+
+  - Installing Git:
+    - sudo apt install git
