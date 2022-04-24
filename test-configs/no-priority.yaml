@@ -1,5 +1,4 @@
 question: "Test config file?"
-priority: 1
 steps:
   - Check invalid syntax:
     - ...

@@ -35,6 +35,7 @@ if __name__ == '__main__':
     except RuntimeError as error:
         sys.exit(f'{red("[!]")} {error}')
 
+    configs = sorted(configs)
     accepted_configs = [cfg for cfg in configs if user_agree(cfg.get_question())]
 
     if not request_sudo_session():

@@ -2,11 +2,15 @@ import os
 import subprocess
 import yaml
 from typing import Final, List, Dict
+from numbers import Number
 from termutils import green, underline, red
 from yaspin import yaspin
 
 QUESTION_SECTION: Final = "question"
+PRIORITY_SECTION: Final = "priority"
 STEPS_SECTION: Final = "steps"
+
+DEFAULT_PRIORITY: Final = 10
 
 
 class changedir():
@@ -43,8 +47,20 @@ class Config:
             if self.__data[section] is None:
                 raise RuntimeError(f'{underline(path)}: {underline(section)} section is empty')
 
+        if PRIORITY_SECTION not in self.__data:
+            self.__data[PRIORITY_SECTION] = DEFAULT_PRIORITY
+
+        if self.__data[PRIORITY_SECTION] is None:
+            raise RuntimeError(f'{underline(path)}: {underline(PRIORITY_SECTION)} section is empty')
+
+    def __lt__(self, other) -> bool:
+         return self.get_priority() < other.get_priority()
+
     def get_question(self) -> str:
         return self.__data[QUESTION_SECTION]
+
+    def get_priority(self) -> Number:
+        return self.__data[PRIORITY_SECTION]
 
     def get_steps(self) -> List[Dict[str, List[str]]]:
         return self.__data[STEPS_SECTION]

@@ -1,5 +1,5 @@
 import unittest
-from config import Config
+from config import Config, DEFAULT_PRIORITY
 
 
 class TestConfig(unittest.TestCase):
@@ -19,6 +19,14 @@ class TestConfig(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             _ = Config('test-configs/empty-question.yaml')
 
+    def test_no_priotiry(self):
+        cfg = Config('test-configs/no-priority.yaml')
+        self.assertEqual(cfg.get_priority(), DEFAULT_PRIORITY)
+
+    def test_empty_priotiry(self):
+        with self.assertRaises(RuntimeError):
+            _ = Config('test-configs/empty-priority.yaml')
+
     def test_no_steps(self):
         with self.assertRaises(RuntimeError):
             _ = Config('test-configs/no-steps.yaml')
@@ -31,6 +39,7 @@ class TestConfig(unittest.TestCase):
         config_path = 'test-configs/valid.yaml'
         config = Config(config_path)
 
+        self.assertEqual(config.get_priority(), 1)
         self.assertEqual(config.get_name(), 'valid.yaml')
         self.assertEqual(config.get_path(), config_path)
         self.assertEqual(config.get_question(), 'Test config file?')

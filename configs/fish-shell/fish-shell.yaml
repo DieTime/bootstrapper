@@ -1,4 +1,5 @@
 question: "Install fish-shell?"
+priority: 1
 steps:
   - Add fish-shell repository:
     - sudo apt-add-repository ppa:fish-shell/release-3
