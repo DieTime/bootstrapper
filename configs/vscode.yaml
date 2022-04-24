@@ -2,7 +2,7 @@ question: "Install Visual Studio Code?"
 steps:
   - Installing dependencies:
     - sudo apt update
-    - sudo apt install software-properties-common apt-transport-https wget
+    - sudo apt install software-properties-common apt-transport-https wget -y
 
   - Importing Microsoft GPG keys:
     - wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -12,4 +12,4 @@ steps:
 
   - Installing Visual Studio Code:
     - sudo apt update
-    - sudo apt install code
+    - sudo apt install code -y

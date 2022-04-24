@@ -4,4 +4,4 @@ steps:
     - sudo apt update
 
   - Installing MPV Player:
-    - sudo apt install mpv
+    - sudo apt install mpv -y
