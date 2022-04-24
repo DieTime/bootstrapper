@@ -11,6 +11,7 @@ steps:
     - sudo apt install fish -y
 
   - Copy Fish configs:
+    - mkdir -p /home/$(whoami)/.config/fish
     - cp -r ./dot-config/* /home/$(whoami)/.config/fish
 
   - Set Fish as default:
