@@ -8,7 +8,7 @@ steps:
     - wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
 
   - Add Visual Studio Code repository:
-    - sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+    - sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" -y
 
   - Installing Visual Studio Code:
     - sudo apt update
