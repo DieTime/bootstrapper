@@ -1,7 +1,7 @@
-question: "Install MPV Player?"
+question: "Install MPV player?"
 steps:
   - Update repositories:
     - sudo apt update
 
-  - Installing MPV Player:
+  - Installing MPV player:
     - sudo apt install mpv -y
