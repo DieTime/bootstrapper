@@ -1,0 +1,16 @@
+question: "Install Micro text editor?"
+steps:
+  - Install dependencies:
+    - sudo apt update
+    - sudo apt install curl
+
+  - Downloading install script:
+    - curl -o /tmp/micro.sh https://getmic.ro
+
+  - Installing Micro text editor:
+    - sudo chmod +x /tmp/micro.sh
+    - sudo /tmp/micro.sh
+    - sudo mv ./micro /usr/bin/micro
+
+  - Cleanup downloaded files:
+    - rm -f /tmp/micro.sh
