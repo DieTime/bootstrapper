@@ -1,0 +1,7 @@
+question: "Change intput layout switching to Alt+Shift?"
+steps:
+  - Set forward switch to Shift+Alt(left):
+    - gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt_L']"
+
+  - Set backward switch to Alt+Shift(left):
+    - gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Alt>Shift_L']"
