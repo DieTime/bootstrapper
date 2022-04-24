@@ -1,4 +1,5 @@
 question: "Install MPV Player?"
+priority: 20
 steps:
   - Update repositories:
     - sudo apt update

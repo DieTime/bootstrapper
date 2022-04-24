@@ -1,4 +1,4 @@
-question: "Install fish-shell?"
+question: "Install Fish?"
 priority: 1
 steps:
   - Add fish-shell repository:

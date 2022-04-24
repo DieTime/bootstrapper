@@ -1,9 +1,9 @@
-question: "Install Google Chrome browser?"
+question: "Install Google Chrome?"
 steps:
-  - Downloading Google Chrome browser:
+  - Downloading Google Chrome:
     - wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-  - Installing Google Chrome browser:
+  - Installing Google Chrome:
     - sudo apt install /tmp/chrome.deb -y
 
   - Cleanup downloaded files:
